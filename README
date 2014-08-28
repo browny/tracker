@@ -1,0 +1,6 @@
+
+virtualenv env; 
+./env/bin/pip install -r requirements.txt
+
+
+env/bin/python -B /opt/flask/run.py
