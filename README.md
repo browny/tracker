@@ -16,3 +16,6 @@ Track the latest content from the specified sites.
 2. Run flask application
 
 		$ env/bin/python -B /opt/flask/run.py
+
+### License
+tracker is released under the [WTFPL](http://en.wikipedia.org/wiki/WTFPL).
