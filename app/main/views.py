@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from flask import Blueprint, jsonify, make_response
-from flask import current_app
+from flask import jsonify
 import controller
-from .. import db
 from . import main
 
 

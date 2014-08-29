@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from flask import request, jsonify, make_response
 from flask import current_app
-import requests, json, re
+import requests
+import re
 
 
 def query_by_string(stock_name):
