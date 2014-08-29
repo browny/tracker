@@ -1,29 +1,41 @@
-# Define the application directory
 import os
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-
-# Statement for enabling the development environment
-DEBUG = True
-JSON_AS_ASCII = False
+basedir = os.path.abspath(os.path.dirname(__file__))
 
 
-# Define the database - we are working with
-# SQLite for this example
-SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(BASE_DIR, 'app.db')
-DATABASE_CONNECT_OPTIONS = {}
+class Config:
+    SECRET_KEY = os.environ.get('SECRET_KEY') or 'hard to guess string'
+    SQLALCHEMY_COMMIT_ON_TEARDOWN = True
+    JSON_AS_ASCII = False
+    GOOGLE_API_KEY = 'AIzaSyChAZIcZj7oqPZscN3_I846NmJHb2nX_f8'
+    GOOGLE_SEARCH_ENGINE_ID = '004459222364309715284:-umvhhkr0tw'
 
-# Application threads. A common general assumption is
-# using 2 per available processor cores - to handle
-# incoming requests using one and performing background
-# operations using the other.
-THREADS_PER_PAGE = 2
+    @staticmethod
+    def init_app(app):
+        pass
 
-# Enable protection agains *Cross-site Request Forgery (CSRF)*
-CSRF_ENABLED = True
 
-# Use a secure, unique and absolutely secret key for
-# signing the data.
-CSRF_SESSION_KEY = "secret"
+class DevelopmentConfig(Config):
+    DEBUG = True
+    JSON_AS_ASCII = False
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DEV_DATABASE_URL') or \
+        'sqlite:///' + os.path.join(basedir, 'data-dev.sqlite')
 
-# Secret key for signing cookies
-SECRET_KEY = "secret"
+
+class TestingConfig(Config):
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = os.environ.get('TEST_DATABASE_URL') or \
+        'sqlite:///' + os.path.join(basedir, 'data-test.sqlite')
+
+
+class ProductionConfig(Config):
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
+        'sqlite:///' + os.path.join(basedir, 'data.sqlite')
+
+
+config = {
+    'development': DevelopmentConfig,
+    'testing': TestingConfig,
+    'production': ProductionConfig,
+
+    'default': DevelopmentConfig
+}

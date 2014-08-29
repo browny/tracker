@@ -1,29 +1,35 @@
 # -*- coding: utf-8 -*-
 
-# Import flask dependencies
 from flask import Blueprint, request, jsonify, make_response
+from flask import current_app
 import requests, json, re
+from .. import db
+from . import main
 
-# Define the blueprint: 'parser', set its url prefix: app.url/parser
-mod_parser = Blueprint('parser', __name__, url_prefix='/parser')
 
-QUERY_PREFIX = 'https://www.googleapis.com/customsearch/v1?key=AIzaSyChAZIcZj7oqPZscN3_I846NmJHb2nX_f8&cx=004459222364309715284:-umvhhkr0tw&q='
-OPTIONAL_PARAMS = '&sort=date'
-
-# Set the route and accepted methods
-@mod_parser.route('/<stock_name>', methods=['GET', 'POST'])
+@main.route('/<stock_name>', methods=['GET'])
 def parse(stock_name):
+
     response_dict = query_by_string(stock_name)
     item_list = response_dict.get('items')
-    for item in item_list:
-        snippet = item['snippet']
-        get_date_from_snippet(snippet)
+
+    # for item in item_list:
+    #     snippet = item['snippet']
+    #     get_date_from_snippet(snippet)
 
     return jsonify(items=item_list)
 
 
 def query_by_string(stock_name):
-    query = QUERY_PREFIX + stock_name
+    api_key = current_app.config['GOOGLE_API_KEY']
+    search_engine_id = current_app.config['GOOGLE_SEARCH_ENGINE_ID']
+    QUERY = 'https://www.googleapis.com/customsearch/v1?key=%s&cx=%s&q='
+    FORMAT_QUERY = QUERY % (api_key, search_engine_id)
+    print FORMAT_QUERY
+
+    OPTIONAL_PARAMS = '&sort=date'
+
+    query = FORMAT_QUERY + stock_name + OPTIONAL_PARAMS
     r = requests.get(query)
     response_dict = r.json()
 
@@ -48,3 +54,5 @@ def get_date_from_snippet(snippet):
     else:
         print snippet
         return snippet
+
+

@@ -1,28 +1,19 @@
-
-import os
-
-from flask import Flask, render_template
+from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
-from pymongo import MongoClient
+from config import config
 
-# Define the WSGI application object
-app = Flask(__name__)
+db = SQLAlchemy()
 
-# Configurations
-app.config.from_object('config')
 
-# Define the database object which is imported
-# by modules and controllers
-db = SQLAlchemy(app)
+def create_app(config_name):
+    app = Flask(__name__)
+    app.config.from_object(config[config_name])
+    config[config_name].init_app(app)
 
-# Import a module / component using its blueprint handler variable (mod_auth)
-from app.mod_parser.controllers import mod_parser as parser_module
+    db.init_app(app)
 
-# Register blueprint(s)
-app.register_blueprint(parser_module)
-# app.register_blueprint(xyz_module)
-# ..
+    from main import main as main_blueprint
+    app.register_blueprint(main_blueprint)
 
-# Build the database:
-# This will create the database file using SQLAlchemy
-db.create_all()
+    return app
+

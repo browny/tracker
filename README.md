@@ -15,12 +15,12 @@ Track the latest content from the specified sites.
 
 2. Run flask application
 
-		$ venv/bin/python -B run.py
+		$ venv/bin/python -B manage.py runserver
 
 3. Fire the API
 
-		Open the browser, visit `http://0.0.0.0:5000/parser/<search_term>`
-		e.g. `http://0.0.0.0:5000/parser/htc`
+		Open the browser, visit `http://127.0.0.1:5000/parser/<search_term>`
+		e.g. `http://127.0.0.1:5000/parser/htc`
 
 ### License
 tracker is released under the [WTFPL](http://en.wikipedia.org/wiki/WTFPL).
