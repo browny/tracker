@@ -10,12 +10,12 @@ Track the latest content from the specified sites.
 1. Prepare the dependencies of flask web application
 
 		$ cd tracker/
-		$ virtualenv env; 
-		$ env/bin/pip install -r requirements.txt
+		$ virtualenv venv; 
+		$ venv/bin/pip install -r requirements.txt
 
 2. Run flask application
 
-		$ env/bin/python -B run.py
+		$ venv/bin/python -B run.py
 
 3. Fire the API
 

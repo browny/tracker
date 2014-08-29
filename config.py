@@ -1,10 +1,11 @@
+# Define the application directory
+import os
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+
 # Statement for enabling the development environment
 DEBUG = True
 JSON_AS_ASCII = False
 
-# Define the application directory
-import os
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 # Define the database - we are working with
 # SQLite for this example
