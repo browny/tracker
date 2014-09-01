@@ -22,5 +22,12 @@ Track the latest content from the specified sites.
 		Open the browser, visit `http://127.0.0.1:5000/parser/<search_term>`
 		e.g. `http://127.0.0.1:5000/parser/htc`
 
+
+### Chrome extension client
+
+1. The Chrome extension is located at [here](https://github.com/browny/tracker/tree/master/cex)
+2. It could be installed from source by [this](https://developer.chrome.com/extensions/getstarted#unpacked)
+
+
 ### License
 tracker is released under the [WTFPL](http://en.wikipedia.org/wiki/WTFPL).
