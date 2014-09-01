@@ -13,10 +13,9 @@ def query_by_string(stock_name):
     FORMAT_QUERY = QUERY % (api_key, search_engine_id)
     OPTIONAL_PARAMS = '&sort=date'
 
-    query = FORMAT_QUERY + stock_name + OPTIONAL_PARAMS
-    print 'query: {}'.format(query);
+    query = FORMAT_QUERY + stock_name
 
-    r = requests.get(query)
+    r = requests.get(query.encode('utf-8').strip())
     response_dict = r.json()
 
     item_list = response_dict.get('items')
