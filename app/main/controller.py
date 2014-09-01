@@ -14,6 +14,8 @@ def query_by_string(stock_name):
     OPTIONAL_PARAMS = '&sort=date'
 
     query = FORMAT_QUERY + stock_name + OPTIONAL_PARAMS
+    print 'query: {}'.format(query);
+
     r = requests.get(query)
     response_dict = r.json()
 

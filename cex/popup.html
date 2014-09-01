@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test page</title>
+    <style>
+      body {
+        min-width: 500px;
+        overflow-x: hidden;
+      }
+
+      img {
+        margin: 5px;
+        border: 2px solid black;
+        vertical-align: middle;
+        width: 75px;
+        height: 75px;
+      }
+    </style>
+    <!-- jquery external include -->
+    <script src="js/lib/jquery-1.11.1.min.js"></script>
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <h3>tracker</h3>
+    <form id="add">
+        <input type="text" id="keyword" name="keyword" size="50" value="" />
+        <input id="search" type="submit" value="Search" />
+    </form>
+    <ol id="result"></ol>
+  </body>
+</html>
