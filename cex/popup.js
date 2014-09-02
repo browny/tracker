@@ -9,13 +9,13 @@ function run(keyword) {
 	.done(function(data) {
 		console.dir(data);
 		for (item in data['items']) {
-            var title = data['items'][item]['title'];
-            var link = data['items'][item]['link'];
+			var title = data['items'][item]['title'];
+			var link = data['items'][item]['link'];
 			$('#result').append(
 				'<li>' + title + '</li>' 
 			);
 			$('#result').append(
-                jQuery('<a>').attr('href', link).attr('target','_blank').text(link)
+				jQuery('<a>').attr('href', link).attr('target','_blank').text(link)
 			);
 		}
 	});
@@ -23,12 +23,12 @@ function run(keyword) {
 
 
 document.addEventListener('DOMContentLoaded', function() {
-  console.log('doc ready!');
-  
-  $( "#target" ).submit(function( event ) {
-    var keyword = $( "#keyword").val();
-    run(keyword);
-    event.preventDefault();
-  });
+	console.log('doc ready!');
+
+	$( "#target" ).submit(function( event ) {
+		var keyword = $( "#keyword").val();
+		run(keyword);
+		event.preventDefault();
+	});
 });
 
