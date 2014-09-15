@@ -2,7 +2,7 @@
 import os
 from app import create_app, db
 from app.models import User, Role
-from flask.ext.script import Manager, Shell
+from flask.ext.script import Manager, Shell, Server
 from flask.ext.migrate import Migrate, MigrateCommand
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
@@ -13,6 +13,9 @@ migrate = Migrate(app, db)
 #     return dict(app=app, db=db, User=User, Role=Role)
 # manager.add_command("shell", Shell(make_context=make_shell_context))
 manager.add_command('db', MigrateCommand)
+
+server = Server(host="0.0.0.0", port=9000)
+manager.add_command('runserver', server)
 
 
 @manager.command
