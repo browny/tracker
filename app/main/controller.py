@@ -13,7 +13,7 @@ def query_by_string(stock_name):
     FORMAT_QUERY = QUERY % (api_key, search_engine_id)
     OPTIONAL_PARAMS = '&sort=date'
 
-    query = FORMAT_QUERY + stock_name + OPTIONAL_PARAMS
+    query = FORMAT_QUERY + stock_name
 
     print 'query: {}'.format(query.encode('utf-8').strip())
 

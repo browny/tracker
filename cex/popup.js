@@ -2,7 +2,8 @@
 function run(keyword) {
 
 	$.ajax({
-		url: encodeURI('http://127.0.0.1:5000/parser/' + keyword),
+		// url: encodeURI('http://127.0.0.1:5000/parser/' + keyword),
+		url: encodeURI('http://106.187.102.193:9000/parser/' + keyword),
 		dataType: 'json',
 		cache: false
 	})
