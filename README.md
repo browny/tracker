@@ -13,11 +13,15 @@ Track the latest content from the specified sites.
 		$ virtualenv venv; 
 		$ venv/bin/pip install -r requirements.txt
 
-2. Run flask application
+2. Database migration
+
+		$ venv/bin/python manage.py db upgrade
+
+3. Run flask application
 
 		$ venv/bin/python -B manage.py runserver
 
-3. Fire the API
+4. Fire the API
 
 		Open the browser, visit `http://127.0.0.1:5000/parser/<search_term>`
 		e.g. `http://127.0.0.1:5000/parser/htc`
