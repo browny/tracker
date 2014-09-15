@@ -15,6 +15,8 @@ Track the latest content from the specified sites.
 
 2. Database migration
 
+		$ venv/bin/python manage.py db init // create migrations folder
+		$ venv/bin/python manage.py db migrate -m "initial migration" // generate migration code by looking for differences between the model definitions and the current state of the database
 		$ venv/bin/python manage.py db upgrade
 
 3. Run flask application
